@@ -1,0 +1,2 @@
+include ':app', ':RememberWords', ':greendao'
+rootProject.name='欢乐写数字'

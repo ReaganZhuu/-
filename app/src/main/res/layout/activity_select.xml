@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".SelectActivity">
+    <TableRow android:layout_weight="1">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_marginTop="70dp"
+            android:layout_weight="1"
+            android:src="@drawable/number_1"
+            android:onClick="onOne"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_marginTop="70dp"
+            android:layout_weight="1"
+            android:src="@drawable/number_2"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_marginTop="70dp"
+            android:layout_weight="1"
+            android:src="@drawable/number_3"/>
+    </TableRow>
+    <TableRow android:layout_weight="1">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:src="@drawable/number_4"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:src="@drawable/number_5"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:src="@drawable/number_6"/>
+    </TableRow>
+    <TableRow android:layout_weight="1">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:src="@drawable/number_7"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:src="@drawable/number_8"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:src="@drawable/number_9"/>
+    </TableRow>
+    <TableRow android:layout_weight="1">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:src="@drawable/number_0"/>
+    </TableRow>
+</TableLayout>
