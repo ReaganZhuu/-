@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -25,7 +24,6 @@ import com.iflytek.cloud.speech.SpeechConstant;
 import com.iflytek.cloud.speech.SpeechError;
 import com.iflytek.cloud.speech.SpeechListener;
 import com.iflytek.cloud.speech.SpeechSynthesizer;
-import com.iflytek.cloud.speech.SpeechUser;
 import com.iflytek.cloud.speech.SynthesizerListener;
 import com.neu.rememberwords.greendao.entity.greendao.CET4Entity;
 import com.neu.rememberwords.greendao.entity.greendao.CET4EntityDao;
@@ -38,13 +36,13 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * 欢乐写数字
+ * 锁屏主界面
  *
  * @author Reagan_Zhu
  * @email 2668526325@qq.com
  * @date 2020/5/6 18:28
  */
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, SynthesizerListener, RadioGroup.OnCheckedChangeListener {
+public class MainActivity extends AppCompatActivity implements  SynthesizerListener, RadioGroup.OnCheckedChangeListener {
     private TextView timeText,dateText,wordText,englishText;
     private ImageView playVoice;//播放声音
     private String mMonth,mDay,mWay,mHours,mMinute;//显示时间
@@ -126,20 +124,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dbDao = dbSession.getCET4EntityDao();
 
 
-        timeText = (TextView) findViewById(R.id.time_text);            //用于显示分钟绑定id
-        dateText = (TextView) findViewById(R.id.date_text);             //用于显示日期绑定id
-        wordText = (TextView) findViewById(R.id.word_text);             //用于显示单词绑定id
-        englishText = (TextView) findViewById(R.id.english_text);       //用于显示音标绑定id
-        playVoice = (ImageView) findViewById(R.id.play_voice);              //用于播放单词的按钮绑定id
-        playVoice.setOnClickListener(this);                             //给播放单词按钮进行监听
-        radioGroup = (RadioGroup) findViewById(R.id.choose_group);         //给加载单词三个选项绑定id
-        radioOne = (RadioButton) findViewById(R.id.choose_btn_one);        //给第一个选项绑定id
-        radioTwo = (RadioButton) findViewById(R.id.choose_btn_two);         //给第二个选项绑定id
-        radioThree = (RadioButton) findViewById(R.id.choose_btn_three);     //给第三个选项绑定id
+        timeText = findViewById(R.id.time_text);            //用于显示分钟绑定id
+        dateText = findViewById(R.id.date_text);             //用于显示日期绑定id
+        wordText = findViewById(R.id.word_text);             //用于显示单词绑定id
+        englishText = findViewById(R.id.english_text);       //用于显示音标绑定id
+        playVoice = findViewById(R.id.play_voice);              //用于播放单词的按钮绑定id
+        //playVoice.setOnClickListener(this);                             //给播放单词按钮进行监听
+        radioGroup =  findViewById(R.id.choose_group);         //给加载单词三个选项绑定id
+        radioOne = findViewById(R.id.choose_btn_one);        //给第一个选项绑定id
+        radioTwo = findViewById(R.id.choose_btn_two);         //给第二个选项绑定id
+        radioThree = findViewById(R.id.choose_btn_three);     //给第三个选项绑定id
         radioGroup.setOnCheckedChangeListener(this);                        //给加载单词三个选项设置监听事件
         //appid换成自己申请的，播放语音
-        setParam();
-        SpeechUser.getUser().login(MainActivity.this, null, null, "appid=573a7bf0", listener);
+//        setParam();
+//        SpeechUser.getUser().login(MainActivity.this, null, null, "appid=573a7bf0", listener);
 
     }
 
@@ -156,8 +154,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         /**
          * 如果小时是个位数
-         *
-         *则在前面加“0”
+         * 则在前面加“0”
          * */
         if (calendar.get(Calendar.HOUR) < 10) {
             mHours = "0" + calendar.get(Calendar.HOUR);
@@ -166,8 +163,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         /**
          * 如果分钟是个位数
-         *
-         *则在前面加“0”
+         * 则在前面加“0”
          * */
         if (calendar.get(Calendar.MINUTE) < 10) {
             mMinute = "0" + calendar.get(Calendar.MINUTE);
@@ -229,15 +225,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * 点击播放单词读音监听
      */
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.play_voice://播放单词声音
-                String text = wordText.getText().toString();    //把单词提取出来
-                speechSynthesizer.startSpeaking(text, this);          //讯飞 播放声音
-                break;
-        }
-    }
+//    @Override
+//    public void onClick(View v) {
+//        switch (v.getId()) {
+//            case R.id.play_voice://播放单词声音
+//                String text = wordText.getText().toString();    //把单词提取出来
+//                speechSynthesizer.startSpeaking(text, this);          //讯飞 播放声音
+//                break;
+//        }
+//    }
 
     @Override
     public void onSpeakBegin() {
