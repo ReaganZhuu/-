@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements  SynthesizerListe
     int j=0;//用于记录答对了几道题
     List<Integer> list;//判断题的数目
     List<CET4Entity> datas;//从数据库获取相应的词库
-    int k;
+    int k;//指向当前单词
 
     //手指按下的点为(x1,y1),离开屏幕的点为(x2,y2)
     float x1=0;
@@ -75,8 +75,8 @@ public class MainActivity extends AppCompatActivity implements  SynthesizerListe
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
-        |WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED//在锁屏情况下也可以显示屏幕
+        |WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);//启动Activity的时候点亮屏幕
         init();
     }
     /**
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements  SynthesizerListe
 
         sharedPreferences = getSharedPreferences("share", Context.MODE_PRIVATE);        //初始化轻量级数据库
         editor = sharedPreferences.edit();          //初始化轻量级数据库编辑器
-        list = new ArrayList<Integer>();        //初始化list
+        list = new ArrayList<>();        //初始化list
         /**
          * 添加一个10个10以内随机数,随机从数据库中获取单词
          * */
@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements  SynthesizerListe
         mDaoMaster = new DaoMaster(db1);
         mDaoSession = mDaoMaster.newSession();
         questionDao = mDaoSession.getCET4EntityDao();
+
         // 此DevOpenHelper类继承自SQLiteOpenHelper,第一个参数Context,第二个参数数据库名字,第三个参数CursorFactory
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "wrong.db", null);
         /**
@@ -192,6 +193,10 @@ public class MainActivity extends AppCompatActivity implements  SynthesizerListe
         }
         timeText.setText(mHours + ":" + mMinute);
         dateText.setText(mMonth + "月" + mDay + "日" + "    " + "星期" + mWay);
+
+        //加入销毁队列
+        BaseApplication.addDestroyActiivty(this, "lockActivity");  //把这个activity加到列队里面
+        getDBData();//获取单词数据
 
     }
 
